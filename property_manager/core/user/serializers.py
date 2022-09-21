@@ -1,12 +1,30 @@
+from django.core import exceptions
 from core.user.models import AppUser
 from rest_framework import serializers
+from django.contrib.auth import password_validation as validators
+
 
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AppUser
-        fields = ['id', 'email', 'phone_number', 'date_of_birth', 'is_active', 'created', 'updated']
- 
+        fields = ['id', 'email', 'password', 'phone_number', 'date_of_birth', 'is_active']
+
+    
+    def validate(self, data):
+        user = AppUser(**data)
+        password = data.get('password')
+        errors = {}
+
+        try:
+            validators.validate_password(password, user)
+        except exceptions.ValidationError as e:
+            errors['password'] = list(e.messages)
+        
+        if errors:
+           raise serializers.ValidationError(errors)
+        return super().validate(data)
+
 
 #    https://dev.to/koladev/django-rest-authentication-cmh
 #    https://jpmeyer.dev/blog/django-rest-framework-custom-users
