@@ -1,3 +1,5 @@
+import re
+
 from django.core import exceptions
 from core.user.models import AppUser
 from rest_framework import serializers
@@ -16,6 +18,19 @@ class UserSerializer(serializers.ModelSerializer):
         password = data.get('password')
         errors = {}
 
+        # Validate Password 
+        if not re.findall('\d', password):
+           raise serializers.ValidationError("The password must contain at least 1 digit, 0-9.")
+        
+        if not re.findall('[A-Z]', password):
+            raise serializers.ValidationError("The password must contain at least 1 uppercase letter, A-Z.")
+
+        if not re.findall('[a-z]', password):
+            raise serializers.ValidationError("The password must contain at least 1 lowercase letter, a-z.")
+
+        if not re.findall('[()[\]{}|\\`~!@#$%^&*_\-+=;:\'",<>./?]', password):
+            raise serializers.ValidationError("The password must contain at least 1 symbol: " + "()[]{}|\`~!@#$%^&*_-+=;:'\",<>./?")
+        
         try:
             validators.validate_password(password, user)
         except exceptions.ValidationError as e:
@@ -24,6 +39,7 @@ class UserSerializer(serializers.ModelSerializer):
         if errors:
            raise serializers.ValidationError(errors)
         return super().validate(data)
+
 
 
 #    https://dev.to/koladev/django-rest-authentication-cmh
