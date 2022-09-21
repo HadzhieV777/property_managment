@@ -13,7 +13,7 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 
     objects = AppUserManager()
 
-    phone_number = models.IntegerField(blank=True, max_length=35)
+    phone_number = models.IntegerField(blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
 
     def __str__(self):
