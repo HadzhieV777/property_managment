@@ -1,4 +1,4 @@
-import re
+from utils.validators import validate_password_contain_digit, validate_password_contain_uppercase_letter, validate_password_contain_lowercase_letter, validate_password_contain_symbol
 
 from django.core import exceptions
 from core.user.models import AppUser
@@ -19,18 +19,11 @@ class UserSerializer(serializers.ModelSerializer):
         errors = {}
 
         # Validate Password 
-        if not re.findall('\d', password):
-           raise serializers.ValidationError("The password must contain at least 1 digit, 0-9.")
-        
-        if not re.findall('[A-Z]', password):
-            raise serializers.ValidationError("The password must contain at least 1 uppercase letter, A-Z.")
-
-        if not re.findall('[a-z]', password):
-            raise serializers.ValidationError("The password must contain at least 1 lowercase letter, a-z.")
-
-        if not re.findall('[()[\]{}|\\`~!@#$%^&*_\-+=;:\'",<>./?]', password):
-            raise serializers.ValidationError("The password must contain at least 1 symbol: " + "()[]{}|\`~!@#$%^&*_-+=;:'\",<>./?")
-        
+        validate_password_contain_digit(password)
+        validate_password_contain_uppercase_letter(password) 
+        validate_password_contain_lowercase_letter(password)
+        validate_password_contain_symbol(password)
+      
         try:
             validators.validate_password(password, user)
         except exceptions.ValidationError as e:
