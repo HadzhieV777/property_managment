@@ -2,6 +2,8 @@ from dataclasses import field
 from importlib.metadata import requires
 from weakref import ref
 from rest_framework import serializers
+from rest_framework.exceptions import AuthenticationFailed
+from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.settings import api_settings
 from django.contrib.auth.models import update_last_login
@@ -43,3 +45,14 @@ class RegisterSerializer(UserSerializer):
             user = AppUser.objects.create_user(**validated_data)
         return user
     
+
+# class LogoutSerializer(serializers.Serializer):
+#     refresh = serializers.CharField()
+#     def validate(self, attrs):
+#         self.token = attrs['refresh']
+#         return attrs
+#     def save(self, **kwargs):
+#         try:
+#             RefreshToken(self.token).blacklist()
+#         except TokenError:
+#             self.fail('bad_token')
