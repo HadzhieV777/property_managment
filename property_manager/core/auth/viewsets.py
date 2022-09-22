@@ -50,7 +50,6 @@ class RegistrationViewSet(ModelViewSet, TokenObtainPairView):
             return Response(serializer.errors, status=status.HTTP_403_FORBIDDEN)
        
 
-
 class RefreshViewSet(ViewSet, TokenRefreshView):
     permission_classes =(AllowAny,)
     http_method_names = ['post']
@@ -64,6 +63,4 @@ class RefreshViewSet(ViewSet, TokenRefreshView):
             raise InvalidToken(e.args[0])
         
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
-
-
 
