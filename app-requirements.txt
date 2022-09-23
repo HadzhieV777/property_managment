@@ -1,35 +1,6 @@
-1. Landlord
- - name
- - surname
- - email
- - phone
- - estates
- - birthday
- 
-1.1. Property
- - type
- - location
- - ?photos
- - rent per month
- - ?rent per year
- - bills per month
- - rented
- - expences per month
- - rent payday
- - bills payday
- - suitable for pets
-
-
-
-1.2. Teanant 
- - name
- - surname
- - phone
- - email
- - job
- - has pets
- - birthday
- 
+# https://github.com/encode/django-rest-framework/issues/5616
+# https://stackoverflow.com/questions/49360949/401-unatuhorizeddetailauthentication-credentials-were-not-provided
+# https://stackoverflow.com/questions/38845051/how-to-update-user-password-in-django-rest-framework
 
 
 
