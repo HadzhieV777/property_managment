@@ -1,10 +1,10 @@
 from django.db import models
 
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from core.user.manager import AppUserManager
 
 
-class AppUser(AbstractBaseUser, PermissionsMixin):
+class AppUser(AbstractUser, PermissionsMixin):
     username = None
     email = models.EmailField(db_index=True, unique=True)
     
