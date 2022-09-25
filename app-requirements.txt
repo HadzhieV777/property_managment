@@ -1,8 +1,0 @@
-# https://github.com/encode/django-rest-framework/issues/5616
-# https://stackoverflow.com/questions/49360949/401-unatuhorizeddetailauthentication-credentials-were-not-provided
-# https://stackoverflow.com/questions/38845051/how-to-update-user-password-in-django-rest-framework
-
-
-
-
-
