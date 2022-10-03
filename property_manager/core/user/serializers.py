@@ -21,6 +21,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     
     def validate(self, data):
+        if AppUser.objects.filter(email=data['email']).exists():
+            raise serializers.ValidationError({'email', ('This email is already taken!')})
         user = AppUser(**data)
         password = data.get('password')
         errors = {}
@@ -39,6 +41,9 @@ class UserSerializer(serializers.ModelSerializer):
         if errors:
            raise serializers.ValidationError(errors)
         return super().validate(data)
+    
+    def create(self, validated_data):
+        return AppUser.objects.create_user(validated_data)
 
 
 class UserPwdChangeSerializer(serializers.Serializer):
