@@ -7,8 +7,11 @@ from core.user.manager import AppUserManager
 class AppUser(AbstractUser, PermissionsMixin):
     username = None
     email = models.EmailField(db_index=True, unique=True)
-    phone_number = models.IntegerField(blank=True, null=True)
-    date_of_birth = models.DateField(blank=True, null=True)
+    first_name = models.CharField(max_length=70, blank=True)
+    last_name = models.CharField(max_length=70, blank=True)
+    phone_number = models.CharField(max_length=70, blank=True, null=True)
+    city = models.CharField(max_length=100, blank=True)
+    country = models.CharField(max_length=70, blank=True)
     
     objects = AppUserManager()
     
