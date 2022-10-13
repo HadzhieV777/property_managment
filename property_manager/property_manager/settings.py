@@ -52,6 +52,7 @@ PROPERTY_MANAGER_APPS = (
     'core.user',
     'core.auth',
     'utils',
+    'properties',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROPERTY_MANAGER_APPS
