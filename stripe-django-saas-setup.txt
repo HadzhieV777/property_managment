@@ -1,0 +1,7 @@
+https://www.saaspegasus.com/guides/django-stripe-integrate/
+https://hackernoon.com/how-to-use-django-as-your-saas-framework-pol3uwk
+https://saasitive.com/tutorial/django-react-boilerplate-saas/
+https://django.cowhite.com/blog/integrating-chargebee-with-django/
+https://djangochat.com/episodes/saas-pegasus-cory-zue
+https://python.plainenglish.io/build-a-payment-system-with-django-3-1-and-stripe-from-scratch-part-1-21e8f980a9eb
+https://testdriven.io/blog/django-stripe-subscriptions/
