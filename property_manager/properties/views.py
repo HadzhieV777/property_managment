@@ -16,10 +16,9 @@ class PropertyListAndCreateView(api_views.ListCreateAPIView):
     list_serializer_class = PropertyforListSerializer
     create_serializer_class = PropertyFullSerializer
 
-    
     def get_queryset(self):
         queryset =  super().get_queryset()
-        queryset = queryset.filter(realtor_id=self.request.user.id)
+        queryset = queryset.filter(owner_id=self.request.user.id)
         # queryset = self.__apply_query_filters(queryset)
         return queryset
     
@@ -37,6 +36,6 @@ class PropertyDetailsAndUpdateView(api_views.RetrieveUpdateAPIView):
 
     # def get_object(self):
     #     obj = super().get_object()
-    #     if obj.realtor != self.request.realtor:
+    #     if obj.owner != self.request.user:
     #         raise exceptions.PermissionDenied
     #     return obj
