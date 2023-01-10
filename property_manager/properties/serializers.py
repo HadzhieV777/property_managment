@@ -5,7 +5,7 @@ from rest_framework import serializers
 class PropertyforListSerializer(serializers.ModelSerializer):
     class Meta:
         model = SingleProperty
-        fields = ('address', 'city', 'type', 'price', 'status')     
+        fields = ('address', 'baths', 'bedrooms', 'city', 'maintenance', 'owner', 'price', 'rented', 'type', 'zip')     
 
 class PropertyFullSerializer(serializers.ModelSerializer):
     class Meta:
